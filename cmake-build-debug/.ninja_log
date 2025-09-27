@@ -1,8 +1,0 @@
-# ninja log v6
-5	162	1759007050997859956	CMakeFiles/cpp_imageproc.dir/app/imgproc.cpp.o	3fda6833bfd2abb8
-4	163	1759007050996452371	CMakeFiles/cpp_imageproc.dir/main.cpp.o	d914a9ca1af98569
-5	707	1759007050997710706	CMakeFiles/cpp_imageproc.dir/src/image_gray8.cpp.o	594187ddffb8d24a
-1	547	1759007416415265712	CMakeFiles/cpp_imageproc.dir/app/imgproc.cpp.o	bbea7caf1b03ea1f
-1	553	1759007416414788961	CMakeFiles/imgcore.dir/src/image_gray8.cpp.o	6eef41c2c1530f64
-553	1012	1759007416967511228	libimgcore.a	ba03a0814035a7e8
-1012	1122	1759007417425658807	cpp_imageproc	b160b9259982bfe8
