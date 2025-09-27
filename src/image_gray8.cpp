@@ -5,6 +5,7 @@
 #include <cctype>
 #include <cstdint>
 #include <fstream>
+#include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -62,12 +63,12 @@ namespace img {
             throw std::runtime_error("Malformed PPM header");
         }
 
-        char ws;
-        if (!is.get(ws)) throw std::runtime_error("Unexpected EOF after header");
+        is >> std::ws;
         std::size_t count = static_cast<std::size_t>(width) * static_cast<std::size_t>(height);
 
         std::vector<uint8_t> rgb(count * 3);
         is.read(reinterpret_cast<char*>(rgb.data()), static_cast<std::streamsize>(rgb.size()));
+
         if (is.gcount() != static_cast<std::streamsize>(rgb.size())) {
             throw std::runtime_error("Short read on P6 pixel data");
         }

@@ -10,4 +10,8 @@ target_include_directories(imgcore PUBLIC include)
 
 add_executable(cpp_imageproc app/imgproc.cpp)
 
+target_compile_definitions(cpp_imageproc PRIVATE
+        PROJECT_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
+)
+
 target_link_libraries(cpp_imageproc PRIVATE imgcore)
