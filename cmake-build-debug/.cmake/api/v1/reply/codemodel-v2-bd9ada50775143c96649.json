@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.30"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "cpp_imageproc",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "cpp_imageproc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cpp_imageproc-Debug-f43fb93a7e799652d397.json",
+					"name" : "cpp_imageproc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "imgcore::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-imgcore-Debug-44885555ff12ba53f9f0.json",
+					"name" : "imgcore",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/haorangan/CLionProjects/cpp-imageproc/cmake-build-debug",
+		"source" : "/Users/haorangan/CLionProjects/cpp-imageproc"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
