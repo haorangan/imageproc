@@ -2,20 +2,42 @@
 // Created by Haoran Gan on 9/27/25.
 //
 
-#include <image_gray8.h>
+#include <image_gray8.hpp>
+
+#include "gaussian.hpp"
 #include "iostream"
 
 
 using namespace img;
+
+// hardcoded constants
+constexpr float SIGMA = 1.2;
+
+std::filesystem::path suffix_path(const std::filesystem::path& in, const std::string& suffix) {
+    const auto stem = in.stem().string();     // "out"
+    const auto ext  = in.extension().string(); // ".ppm"
+    const auto parent = in.parent_path();     // "data"
+    const std::string newname = stem + "_" + suffix + ext; // "out_blur.ppm"
+    return parent / newname;            // "data/out_blur.ppm"
+}
+
+
 int main(int argc, char** argv) {
     if (argc < 3) {
         std::cerr << "Usage: imgproc in.ppm out.ppm\n";
         return 1;
     }
     try {
-        auto g = load_ppm_as_gray(argv[1]);
+        // convert to grayscale
+        const auto g = load_ppm_as_gray(argv[1]);
         save_ppm_as_gray(argv[2], g);
-        std::cout << "OK\n";
+
+        // apply gaussian filter
+        const FloatImage f = to_float(g);
+        FloatImage tmp, blurred;
+        gaussian_blur(f, tmp, blurred, SIGMA);
+        const auto blur_int8 = to_gray8(blurred);
+        save_ppm_as_gray(suffix_path(argv[2], "blur"), blur_int8);
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << "\n";
         return 2;

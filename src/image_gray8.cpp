@@ -1,7 +1,7 @@
 //
 // Created by Haoran Gan on 9/27/25.
 //
-#include "../include/image_gray8.h"
+#include "image_gray8.hpp"
 #include <cctype>
 #include <cstdint>
 #include <fstream>

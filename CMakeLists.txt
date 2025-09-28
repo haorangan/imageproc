@@ -15,12 +15,12 @@ add_library(imgcore src/image_gray8.cpp
 target_include_directories(imgcore PUBLIC include)
 
 add_executable(cpp_imageproc app/imgproc.cpp
-        include/gaussian.h
-        include/sobel.h
-        include/nonmax.h
-        include/hysteresis.h
-        include/canny.h
-        include/float_image.h)
+        include/gaussian.hpp
+        include/sobel.hpp
+        include/nonmax.hpp
+        include/hysteresis.hpp
+        include/canny.hpp
+        include/float_image.hpp)
 
 target_compile_definitions(cpp_imageproc PRIVATE
         PROJECT_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
