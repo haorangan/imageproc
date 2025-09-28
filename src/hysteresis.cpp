@@ -37,7 +37,7 @@ namespace img {
         constexpr int dx[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
         constexpr int dy[8] = {-1,-1,-1,  0, 0,  1, 1, 1};
 
-        // Flood fill: promote weak edges connected to strong ones
+        // Flood fill
         while (!q.empty()) {
             auto [y, x] = q.front(); q.pop();
             for (int k = 0; k < 8; ++k) {
