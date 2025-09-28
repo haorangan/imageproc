@@ -6,6 +6,7 @@
 
 #include "gaussian.hpp"
 #include "iostream"
+#include "nonmax.hpp"
 #include "sobel.hpp"
 
 
@@ -44,6 +45,15 @@ int main(int argc, char** argv) {
         const auto& gradients = sobel_operator(blurred);
         const auto& grads_int8 = to_gray8(gradients.magnitude);
         save_ppm_as_gray(suffix_path(argv[2], "grad"), grads_int8);
+
+        // nonmax suppression
+        const auto& mags = gradients.magnitude;
+        const auto& dirs = gradients.direction;
+        const auto& thin = nonmax_suppression(mags, dirs);
+        const auto& thin_int8 = to_gray8(thin);
+        save_ppm_as_gray(suffix_path(argv[2], "gradNMS"), thin_int8);
+
+
 
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << "\n";

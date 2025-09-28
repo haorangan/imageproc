@@ -1,8 +1,9 @@
 //
 // Created by Haoran Gan on 9/27/25.
 //
+#pragma once
+#include "float_image.hpp"
 
-#ifndef NONMAX_H
-#define NONMAX_H
-
-#endif //NONMAX_H
+namespace img {
+    FloatImage nonmax_suppression(const FloatImage& mags, const FloatImage& angles);
+}
