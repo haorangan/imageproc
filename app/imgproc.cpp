@@ -5,6 +5,7 @@
 #include <image_gray8.hpp>
 
 #include "gaussian.hpp"
+#include "hysteresis.hpp"
 #include "iostream"
 #include "nonmax.hpp"
 #include "sobel.hpp"
@@ -53,7 +54,24 @@ int main(int argc, char** argv) {
         const auto& thin_int8 = to_gray8(thin);
         save_ppm_as_gray(suffix_path(argv[2], "gradNMS"), thin_int8);
 
+        // compute thresholds based on thin magnitudes
+        float maxMag = 0.f;
+        for (float v : thin.data) maxMag = std::max(maxMag, v);
+        const float high = 0.2f * maxMag;
+        const float low  = 0.5f * high;
 
+        auto em = double_threshold(thin, low, high);
+        hysteresis(em);
+
+        // Convert to Gray8 for saving
+        image_gray8 out;
+        out.width = em.w;
+        out.height = em.h;
+        out.pixels.resize(em.lab.size());
+        for (size_t i = 0; i < em.lab.size(); ++i) {
+            out.pixels[i] = (em.lab[i] == EDGE_STRONG) ? 255u : 0u;
+        }
+        save_ppm_as_gray(suffix_path(argv[2], "_hysteresis"), out);
 
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << "\n";
