@@ -1,6 +1,6 @@
 #include "float_image.hpp"
 #include <image_gray8.hpp>
-#include <iostream>
+#include "cmath"
 //
 // Created by Haoran Gan on 9/27/25.
 //

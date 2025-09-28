@@ -2,6 +2,7 @@
 // Created by Haoran Gan on 9/27/25.
 //
 #include "gaussian.hpp"
+#include "cmath"
 
 namespace img {
     void convolve_row(const FloatImage& in, FloatImage& out, const std::vector<float>& k) {
