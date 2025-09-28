@@ -4,6 +4,7 @@
 #include "sobel.hpp"
 
 #include "gaussian.hpp"
+#include "cmath"
 
 
 namespace img {
