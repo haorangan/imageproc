@@ -2,6 +2,7 @@
 // Created by Haoran Gan on 9/27/25.
 //
 #include "nonmax.hpp"
+#include "cmath"
 
 namespace img {
     FloatImage nonmax_suppression(const FloatImage& mags, const FloatImage& angles) {
@@ -11,7 +12,7 @@ namespace img {
             // normalize to [0,pi)
             if (a < 0) a += static_cast<float>(M_PI);
             // 0: ~0°, 1: ~45°, 2: ~90°, 3: ~135°
-            float deg = a * 180.0f / static_cast<float>(M_PI);
+            const float deg = a * 180.0f / static_cast<float>(M_PI);
             if ((deg >=   0 && deg < 22.5) || (deg >= 157.5 && deg < 180)) return 0;
             if (deg >=  22.5 && deg < 67.5)  return 1;
             if (deg >=  67.5 && deg < 112.5) return 2;

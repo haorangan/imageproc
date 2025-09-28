@@ -3,6 +3,7 @@
 //
 
 #include "hysteresis.hpp"
+#include "queue"
 
 namespace img {
     EdgeMap double_threshold(const FloatImage& thin, float low, float high) {
