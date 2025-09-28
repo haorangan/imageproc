@@ -6,6 +6,7 @@
 
 #include "gaussian.hpp"
 #include "iostream"
+#include "sobel.hpp"
 
 
 using namespace img;
@@ -30,14 +31,20 @@ int main(int argc, char** argv) {
     try {
         // convert to grayscale
         const auto g = load_ppm_as_gray(argv[1]);
-        save_ppm_as_gray(argv[2], g);
+        save_ppm_as_gray(suffix_path(argv[2], "gray"), g);
 
         // apply gaussian filter
         const FloatImage f = to_float(g);
         FloatImage tmp, blurred;
         gaussian_blur(f, tmp, blurred, SIGMA);
-        const auto blur_int8 = to_gray8(blurred);
+        const auto& blur_int8 = to_gray8(blurred);
         save_ppm_as_gray(suffix_path(argv[2], "blur"), blur_int8);
+
+        // compute gradients with sobel
+        const auto& gradients = sobel_operator(blurred);
+        const auto& grads_int8 = to_gray8(gradients.magnitude);
+        save_ppm_as_gray(suffix_path(argv[2], "grad"), grads_int8);
+
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << "\n";
         return 2;
